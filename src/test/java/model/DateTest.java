@@ -33,4 +33,11 @@ class DateTest {
         assertThatThrownBy(date::discountChrismas)
                 .isInstanceOf(IllegalStateException.class);
     }
+    @Test
+    void 평일인지주말인지확인(){
+        Date date = new Date("28");
+
+        assertThat(date.checkWeek())
+                .isEqualTo("평일");
+    }
 }

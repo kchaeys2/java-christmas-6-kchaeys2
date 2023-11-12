@@ -26,4 +26,10 @@ public class Date {
         }
         return 1000+(date-1)*100;
     }
+    public String checkWeek(){
+        if (date%7 == 1 || date%7 == 2){
+            return "주말";
+        }
+        return "평일";
+    }
 }
