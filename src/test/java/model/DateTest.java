@@ -12,5 +12,11 @@ class DateTest {
         assertThatThrownBy(() -> new Date(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+    @Test
+    void 숫자검증1_31(){
+        String input = "32";
+        assertThatThrownBy(() -> new Date(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
 }
