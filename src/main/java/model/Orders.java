@@ -11,6 +11,7 @@ public class Orders {
     public Orders(List<String> orders){
         this.orders = convertOrders(orders);
         validateOnlyBeverage(this.orders);
+        validateOrdersSize(this.orders);
     }
     private Map<Menu,Integer> convertOrders(List<String> inputOrders){
         Map<Menu,Integer> orders = new HashMap<>();
@@ -47,6 +48,13 @@ public class Orders {
                 .allMatch(menu -> Category.BEVERAGE == Category.findByMenu(menu));
         if (validationOnlyBeverage) {
             throw new IllegalArgumentException("[ERROR] 음료만 주문 시에만 주문 가능합니다.");
+        }
+    }
+    private void validateOrdersSize(Map<Menu,Integer> orders){
+        int size = orders.values().stream()
+                .mapToInt(Integer::intValue).sum();
+        if(size > 20){
+            throw new IllegalArgumentException("[ERROR] 주문은 20개이하만 가능합니다.");
         }
     }
 }
