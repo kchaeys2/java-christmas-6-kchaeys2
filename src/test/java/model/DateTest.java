@@ -2,6 +2,7 @@ package model;
 
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 class DateTest {
@@ -18,5 +19,18 @@ class DateTest {
         assertThatThrownBy(() -> new Date(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+    @Test
+    void 크리스마스할인금액반환(){
+        Date date = new Date("25");
 
+        assertThat(date.discountChrismas())
+                .isEqualTo(3400);
+    }
+    @Test
+    void 크리스마스할인불가(){
+        Date date = new Date("28");
+
+        assertThatThrownBy(date::discountChrismas)
+                .isInstanceOf(IllegalStateException.class);
+    }
 }
