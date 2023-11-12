@@ -10,6 +10,7 @@ public class Orders {
 
     public Orders(List<String> orders){
         this.orders = convertOrders(orders);
+        validateOnlyBeverage(this.orders);
     }
     private Map<Menu,Integer> convertOrders(List<String> inputOrders){
         Map<Menu,Integer> orders = new HashMap<>();
@@ -41,5 +42,11 @@ public class Orders {
         }
         return amount;
     }
-
+    private void validateOnlyBeverage(Map<Menu,Integer> orders){
+        boolean validationOnlyBeverage = orders.keySet().stream()
+                .allMatch(menu -> Category.BEVERAGE == Category.findByMenu(menu));
+        if (validationOnlyBeverage) {
+            throw new IllegalArgumentException("[ERROR] 음료만 주문 시에만 주문 가능합니다.");
+        }
+    }
 }

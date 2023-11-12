@@ -20,5 +20,11 @@ class OrdersTest {
         assertThatThrownBy(()-> new Orders(inputOrders))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+    @Test
+    void 음료만주문했는지검증(){
+        List<String> inputOrders = List.of("제로콜라","1","레드와인","1","샴페인","2");
 
+        assertThatThrownBy(() -> new Orders(inputOrders))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
