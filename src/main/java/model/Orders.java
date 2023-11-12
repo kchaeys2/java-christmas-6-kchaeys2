@@ -60,4 +60,13 @@ public class Orders {
             throw new IllegalArgumentException("[ERROR] 주문은 20개이하만 가능합니다.");
         }
     }
+    public Integer sumPrice(){
+        Integer totalPrice = 0;
+        for(Map.Entry<Menu,Integer> order : orders.entrySet()){
+            Integer price = order.getKey().getPrice();
+            Integer amount = order.getValue();
+            totalPrice += price*amount;
+        }
+        return totalPrice;
+    }
 }

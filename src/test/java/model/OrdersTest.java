@@ -3,6 +3,7 @@ package model;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 class OrdersTest {
@@ -40,5 +41,13 @@ class OrdersTest {
 
         assertThatThrownBy(() -> new Orders(inputOrders))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+    @Test
+    void 할인전주문금액확인(){
+        List<String> inputOrders = List.of("제로콜라","10","초코케이크","1","티본스테이크","1");
+
+        Integer sum = new Orders(inputOrders).sumPrice();
+
+        assertThat(sum).isEqualTo(100000);
     }
 }
