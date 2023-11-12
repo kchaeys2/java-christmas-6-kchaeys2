@@ -19,6 +19,9 @@ public class Orders {
         for(int i=0;i< inputOrders.size();i+=2){
             Integer amount = validateAmount(inputOrders.get(i+1));
             Menu menu = validateMenu(inputOrders.get(i));
+            if(orders.containsKey(menu)){
+                throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요");
+            }
             orders.put(menu,amount);
         }
         return orders;

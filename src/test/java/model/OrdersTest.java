@@ -34,4 +34,11 @@ class OrdersTest {
         assertThatThrownBy(() -> new Orders(inputOrders))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+    @Test
+    void 중복된주문확인(){
+        List<String> inputOrders = List.of("제로콜라","10","초코케이크","1","초코케이크","1");
+
+        assertThatThrownBy(() -> new Orders(inputOrders))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
