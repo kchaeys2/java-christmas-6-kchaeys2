@@ -32,4 +32,7 @@ public class Date {
         }
         return "평일";
     }
+    public Boolean checkStar(){
+        return date % 7 == 3 || date == 25;
+    }
 }

@@ -40,4 +40,10 @@ class DateTest {
         assertThat(date.checkWeek())
                 .isEqualTo("평일");
     }
+    @Test
+    void 별유무반환(){
+        Date date = new Date("25");
+
+        assertThat(date.checkStar()).isEqualTo(true);
+    }
 }
