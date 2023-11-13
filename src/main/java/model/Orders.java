@@ -69,4 +69,9 @@ public class Orders {
         }
         return totalPrice;
     }
+    public Long countCategory(Category category){
+        return orders.keySet().stream()
+                .filter(order -> Category.findByMenu(order) == category)
+                .count();
+    }
 }

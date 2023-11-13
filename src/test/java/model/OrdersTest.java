@@ -50,4 +50,12 @@ class OrdersTest {
 
         assertThat(sum).isEqualTo(100000);
     }
+    @Test
+    void 카테고리별개수반환(){
+        List<String> inputOrders = List.of("아이스크림","10","초코케이크","1","티본스테이크","1");
+
+        Long dessertAmount = new Orders(inputOrders).countCategory(Category.MAIN);
+
+        assertThat(dessertAmount).isEqualTo(Long.parseLong("1"));
+    }
 }
