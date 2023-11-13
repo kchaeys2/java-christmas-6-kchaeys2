@@ -22,7 +22,7 @@ public class Date {
     }
     public Integer discountChrismas(){
         if (date < 1 || date > 25){
-            throw new IllegalStateException("크리스마스 할인 적용 불가");
+            throw new IllegalStateException("[ERROR] 크리스마스 할인 적용 불가");
         }
         return 1000+(date-1)*100;
     }
