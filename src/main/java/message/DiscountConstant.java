@@ -9,7 +9,8 @@ public enum DiscountConstant {
     GIFT(120000),
     WEEKS(2023);
     private final Integer discount;
-    DiscountConstant(Integer discount){
+
+    DiscountConstant(Integer discount) {
         this.discount = discount;
     }
 

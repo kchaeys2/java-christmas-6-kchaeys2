@@ -10,7 +10,8 @@ public enum JudgmentConstant {
     SATURAY(2),
     SUNDAY(3);
     private final Integer number;
-    JudgmentConstant (Integer number){
+
+    JudgmentConstant(Integer number) {
         this.number = number;
     }
 

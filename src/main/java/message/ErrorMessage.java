@@ -7,9 +7,11 @@ public enum ErrorMessage {
     ORDER_MAX_SIZE("[ERROR] 주문은 20개이하만 가능합니다.");
 
     private final String msg;
-    ErrorMessage(String msg){
+
+    ErrorMessage(String msg) {
         this.msg = msg;
     }
+
     public String getMsg() {
         return msg;
     }

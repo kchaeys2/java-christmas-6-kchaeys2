@@ -8,7 +8,7 @@ public enum DiscountMessage {
     GIFT("증정 이벤트: ");
     private final String msg;
 
-    DiscountMessage(String msg){
+    DiscountMessage(String msg) {
         this.msg = msg;
     }
 

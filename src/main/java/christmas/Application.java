@@ -11,7 +11,7 @@ public class Application {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
 
-        DiscountController controller = new DiscountController(inputView,outputView);
+        DiscountController controller = new DiscountController(inputView, outputView);
         controller.flowControll();
 
         Console.close();

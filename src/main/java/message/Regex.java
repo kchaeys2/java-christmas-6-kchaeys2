@@ -5,7 +5,8 @@ public enum Regex {
     ORDER_SEPARATOR("-|,"),
     THOUSAND("%,d");
     private final String regex;
-    Regex(String regex){
+
+    Regex(String regex) {
         this.regex = regex;
     }
 

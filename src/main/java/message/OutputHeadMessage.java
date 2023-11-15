@@ -11,7 +11,8 @@ public enum OutputHeadMessage {
     BADGE("12월 이벤트 배지"),
     ENDTAG(">");
     private final String msg;
-    OutputHeadMessage(String msg){
+
+    OutputHeadMessage(String msg) {
         this.msg = msg;
     }
 
