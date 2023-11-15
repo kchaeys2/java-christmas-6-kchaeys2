@@ -1,6 +1,7 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
+import message.Regex;
 
 import java.util.List;
 
@@ -13,7 +14,12 @@ public class InputView {
         return Console.readLine();
     }
     public List<String> inputOrders(){
-        String[] orders = Console.readLine().split("-|,");
+        System.out.println("주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)");
+        return formatOrders();
+    }
+    public List<String> formatOrders(){
+        String[] orders = Console.readLine().split(Regex.ORDER_SEPARATOR.getRegex());
+
         return List.of(orders);
     }
 }
