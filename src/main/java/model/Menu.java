@@ -29,7 +29,9 @@ public enum Menu {
                 .findAny()
                 .orElse(EMPTY);
     }
-
+    public String getName(){
+        return name;
+    }
     public Integer getPrice() {
         return price;
     }
