@@ -11,14 +11,14 @@ public enum Badge {
         this.name = name;
         this.minPrice = minPrice;
     }
-    public static Badge findByMinPrice(Integer discount){
+    public static String findByMinPrice(Integer discount){
         if (discount >= STAR.minPrice && discount < TREE.minPrice){
-            return STAR;
+            return STAR.name;
         } else if (discount >= TREE.minPrice && discount < SANTA.minPrice) {
-            return TREE;
+            return TREE.name;
         } else if (discount >= SANTA.minPrice){
-            return SANTA;
+            return SANTA.name;
         }
-        return EMPTY;
+        return EMPTY.name;
     }
 }

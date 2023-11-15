@@ -9,7 +9,7 @@ class BadgeTest {
     void 배지반환검증(){
         Integer discount = 20000;
 
-        Badge badge = Badge.findByMinPrice(discount);
-        assertThat(badge).isEqualTo(Badge.SANTA);
+        String badge = Badge.findByMinPrice(discount);
+        assertThat(badge).isEqualTo("산타");
     }
 }
