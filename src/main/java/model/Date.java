@@ -1,6 +1,11 @@
 package model;
 
-import java.util.regex.Pattern;
+import message.DiscountConstant;
+import message.ErrorMessage;
+import message.JudgmentConstant;
+import message.Regex;
+
+import java.util.Objects;
 
 public class Date {
     private final Integer date;
@@ -9,30 +14,37 @@ public class Date {
         this.date = validateRange(validationFormat);
     }
     private Integer validateFormat(String date){
-        if(Pattern.matches("^[\\\\d]*$",date)){
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
+        if(!date.matches(Regex.IS_NUMBER.getRegex())){
+            throw new IllegalArgumentException(ErrorMessage.DATE_ERROR.getMsg());
         }
         return Integer.parseInt(date);
     }
     private Integer validateRange(Integer date){
-        if (date < 1 || date > 31) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+        if (date < JudgmentConstant.DATE_MIN_SIZE.getNumber() || date > JudgmentConstant.DATE_MAX_SIZE.getNumber()) {
+            throw new IllegalArgumentException(ErrorMessage.DATE_ERROR.getMsg());
         }
         return date;
     }
     public Integer discountChrismas(){
-        if (date < 1 || date > 25){
-            throw new IllegalStateException("[ERROR] 크리스마스 할인 적용 불가");
+        if (date < JudgmentConstant.DATE_MIN_SIZE.getNumber() || date > JudgmentConstant.CHRISMAS.getNumber()){
+            return DiscountConstant.NO_DISCOUNT.getDiscount();
         }
-        return 1000+(date-1)*100;
+        return DiscountConstant.CHRISMAS_INIT.getDiscount()+(date-1)*DiscountConstant.CHRISMAE_RAISE.getDiscount();
     }
     public String checkWeek(){
-        if (date%7 == 1 || date%7 == 2){
+        boolean isFriday = isDay(JudgmentConstant.FRIDAY.getNumber());
+        boolean isSaturday = isDay(JudgmentConstant.SATURAY.getNumber());
+        if ( isFriday || isSaturday){
             return "주말";
         }
         return "평일";
     }
     public Boolean checkStar(){
-        return date % 7 == 3 || date == 25;
+        boolean isSunday = isDay(JudgmentConstant.SATURAY.getNumber());
+        boolean isChrismas = Objects.equals(date, JudgmentConstant.CHRISMAS.getNumber());
+        return isSunday || isChrismas;
+    }
+    private Boolean isDay(Integer day){
+        return date % JudgmentConstant.WEEK_UNIT.getNumber() == day;
     }
 }

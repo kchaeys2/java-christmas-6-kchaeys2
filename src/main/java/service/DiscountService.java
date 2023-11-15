@@ -1,39 +1,37 @@
 package service;
 
+import message.DiscountConstant;
 import model.Category;
 import model.Date;
+import model.Menu;
 import model.Orders;
 
 public class DiscountService {
-    private final Orders orders;
-    public DiscountService(Orders orders,Integer orderAmount){
-        this.orders = orders;
+    public Integer discountChristmas(Date date){
+        return date.discountChrismas();
     }
-    public Boolean possibleDiscount(Integer orderAmount){
-        return orderAmount > 10000;
-    }
-    public Integer discountChristmas(Date date,Integer orderAmount){
-        return orderAmount - date.discountChrismas();
-    }
-    public Integer discountSpecial(Date date,Integer orderAmount){
+    public Integer discountSpecial(Date date){
         if (date.checkStar()){
-            return orderAmount - 1000;
+            return DiscountConstant.SPECIAL.getDiscount();
         }
-        return orderAmount;
+        return DiscountConstant.NO_DISCOUNT.getDiscount();
     }
-    public Boolean eventChampagne(Integer orderAmount){
-        return orderAmount >= 120000;
+    public Integer eventChampagne(Integer orderAmount){
+        if (orderAmount >= 120000){
+            return Menu.CHAMPAGNE.getPrice();
+        }
+        return DiscountConstant.NO_DISCOUNT.getDiscount();
     }
-    public Integer discountWeek(Date date){
+    public Integer discountWeek(Date date,Orders orders){
         if (date.checkWeek().equals("평일")){
-            return Math.toIntExact(orders.countCategory(Category.DESSERT) * 2023);
+            return Math.toIntExact(orders.countCategory(Category.DESSERT) * DiscountConstant.WEEKS.getDiscount());
         }
-        return 0;
+        return DiscountConstant.NO_DISCOUNT.getDiscount();
     }
-    public Integer discountWeekend(Date date){
+    public Integer discountWeekend(Date date,Orders orders){
         if(date.checkWeek().equals("주말")){
-            return Math.toIntExact(orders.countCategory(Category.MAIN) * 2023);
+            return Math.toIntExact(orders.countCategory(Category.MAIN) * DiscountConstant.WEEKS.getDiscount());
         }
-        return 0;
+        return DiscountConstant.NO_DISCOUNT.getDiscount();
     }
 }
