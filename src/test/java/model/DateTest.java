@@ -8,7 +8,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 class DateTest {
     @Test
     void 날짜가숫자만있는지확인(){
-        String input = "123g";
+        String input = "a";
 
         assertThatThrownBy(() -> new Date(input))
                 .isInstanceOf(IllegalArgumentException.class);
